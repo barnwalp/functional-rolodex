@@ -1,17 +1,30 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
+interface MonsterProps {
+	id: number;
+	name: string;
+	email: string;
+}
 
 const App = () => {
-	// console.log('render');
-	// const [monsters, setMonsters] = useState<MonsterProps[]>([] as MonsterProps);
+	const [monsters, setMonsters] = useState<MonsterProps[]>([] as MonsterProps[]);
 	// const [searchString, setSearchString] = useState('');
 
 	useEffect(() => {
 		fetch('https://jsonplaceholder.typicode.com/users')
 			.then(response => response.json())
-			.then(data => console.log(data))
+			.then(data => {
+				setMonsters(data.map((item: MonsterProps) => {
+					return({
+						id: item.id,
+						name: item.name,
+						email: item.email,
+					})
+				}));
+			})
 	}, [])
+	console.log(monsters)
 
 	// const handleChange = (event) => {
 	// 	setSearchString(event.target.value);
@@ -20,11 +33,10 @@ const App = () => {
 	// const filteredMonsters = monsters.filter((monster) => {return monster.name.toLowerCase().includes(searchString)});
 
 	return (
-		<div>
-			<h1>Test</h1>
-		</div>
+		<>
+			<h1 className='app-title'>Monster Rolodex</h1>
+		</>
 		// <>
-		// 	<h1 className='app-title'>Monster Rolodex</h1>
 		// 	<SearchBox 
 		// 		className="search-box"
 		// 		onChangehandler={handleChange}
