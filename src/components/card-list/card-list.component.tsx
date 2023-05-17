@@ -1,6 +1,6 @@
 import './card-list.styles.css';
 import { MonsterProps } from '../../App';
-// import Card from '../card/card.component.jsx';
+import Card from '../card/card.component';
 
 interface CardListProps {
 	monsterItems: MonsterProps[];
@@ -13,8 +13,7 @@ const CardList = (props: CardListProps) => {
 		{props.monsterItems.map((monster) => {
 			return (
 				<>
-					<h2>{monster.name}</h2>
-					<h2>{monster.email}</h2>
+					<Card monster={monster}/>
 				</>
 			)
 		})}
