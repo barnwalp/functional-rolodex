@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import CardList from './components/card-list/card-list.component';
 
-interface MonsterProps {
+export interface MonsterProps {
 	id: number;
 	name: string;
 	email: string;
 }
 
-const App = () => {
+const App:React.FC = () => {
 	const [monsters, setMonsters] = useState<MonsterProps[]>([] as MonsterProps[]);
 	// const [searchString, setSearchString] = useState('');
 
@@ -35,6 +36,7 @@ const App = () => {
 	return (
 		<>
 			<h1 className='app-title'>Monster Rolodex</h1>
+			<CardList monsterItems={monsters}/>
 		</>
 		// <>
 		// 	<SearchBox 
@@ -42,7 +44,6 @@ const App = () => {
 		// 		onChangehandler={handleChange}
 		// 		placeholder="Search Monsters"
 		// 	/>
-		// 	<CardList monsters={filteredMonsters}/>
 		// </>
 	)
 }
